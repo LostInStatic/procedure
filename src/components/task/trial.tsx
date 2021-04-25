@@ -1,15 +1,15 @@
 import { Button } from '@material-ui/core';
 import React = require('react');
-import { ArrayElement } from '../../data/ArrayElement';
+import { ArrayElement, TrialData } from '../../data/types';
 import models from '../../data/models';
 import Input from './input/input';
 import Stimulus from './stimulus';
 
 interface IProps {
-	type: 'study' | 'training'
-	feedbackLevel: 'full' | 'values' | 'minimal'
+	type: TrialData['trialType']
+	feedbackLevel: TrialData['feedbackLevel']
 	model: ArrayElement<typeof models>
-	trialFinishedCallback: (any) => void;
+	trialFinishedCallback: (data: TrialData) => void;
 }
 
 const Trial: React.FC<IProps> = (props) => {

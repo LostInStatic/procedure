@@ -1,7 +1,7 @@
 import React = require('react');
 import Axis from './axis';
 import models from '../../../data/models';
-import { ArrayElement } from '../../../data/ArrayElement';
+import { ArrayElement } from '../../../data/types';
 
 interface IProps {
 	reportChange: (values: number[]) => void
