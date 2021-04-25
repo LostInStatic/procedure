@@ -10,7 +10,7 @@ const outputPath = path.resolve(__dirname, 'dist');
 module.exports = {
 	context: inputPath,
 	entry: {
-		'main': './main.ts'
+		'main': './main.tsx'
 	},
 	output: {
 		path: outputPath,
