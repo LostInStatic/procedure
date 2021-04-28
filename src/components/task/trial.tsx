@@ -4,15 +4,18 @@ import { ArrayElement, TrialData } from '../../data/types';
 import models from '../../data/models';
 import Input from './input/input';
 import Stimulus from './stimulus';
+import { useDataLogger } from '../../data/dataLogger';
 
-interface IProps {
+interface Props {
 	type: TrialData['trialType']
 	feedbackLevel: TrialData['feedbackLevel']
 	model: ArrayElement<typeof models>
 	trialFinishedCallback: (data: TrialData) => void;
 }
 
-const Trial: React.FC<IProps> = (props) => {
+const Trial: React.FC<Props> = (props) => {
+	const logger = useDataLogger();
+
 	const [targetValues, setTargetValues] = React.useState(
 		[]
 	);
@@ -61,6 +64,9 @@ const Trial: React.FC<IProps> = (props) => {
 						trialType: props.type,
 						feedbackLevel: props.feedbackLevel
 					});
+					logger.pushData(
+						[data]
+					);
 					props.trialFinishedCallback(data);
 				}
 			}

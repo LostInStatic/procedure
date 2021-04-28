@@ -1,4 +1,6 @@
-const models = [
+import { Model } from './types';
+
+const models: Model[] = [
 	{
 		name: 'RGB',
 		scales: [
