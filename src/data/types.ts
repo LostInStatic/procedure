@@ -8,7 +8,7 @@ export type FeedbackLevel = 'full' | 'values' | 'minimal'
 
 export interface Model {
 	name: ModelName,
-	scales: { label: string, max: number }[],
+	axes: { label: string, max: number }[],
 	setColor: (values: number[]) => {backgroundColor: string}
 }
 

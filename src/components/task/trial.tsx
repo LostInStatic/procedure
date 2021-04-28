@@ -10,7 +10,7 @@ interface Props {
 	type: TrialData['trialType']
 	feedbackLevel: TrialData['feedbackLevel']
 	model: ArrayElement<typeof models>
-	trialFinishedCallback: (data: TrialData) => void;
+	trialFinishedCallback: () => void;
 }
 
 const Trial: React.FC<Props> = (props) => {
@@ -24,15 +24,20 @@ const Trial: React.FC<Props> = (props) => {
 	);
 
 	React.useEffect(
-		() => setTargetValues([...props.model.scales.map(
+		() => setTargetValues([...props.model.axes.map(
 			element => randomInteger(0, element.max / 10) * 10
 		)]),
 		[]
 	);
 
-	const [data, recordData] = React.useReducer(
-		dataReducer,
-		{ started: Date.now() }
+	const data = React.useMemo(() => {
+		return {
+			started: Date.now(),
+			model: props.model.name,
+			trialType: props.type,
+			feedbackLevel: props.feedbackLevel
+		};
+	}, []
 	);
 
 
@@ -56,18 +61,15 @@ const Trial: React.FC<Props> = (props) => {
 			className="submit"
 			onClick={
 				() => {
-					recordData({
-						ended: Date.now(),
-						target: targetValues,
-						answer: currentValues,
-						model: props.model.name,
-						trialType: props.type,
-						feedbackLevel: props.feedbackLevel
-					});
 					logger.pushData(
-						[data]
+						[{
+							...data,
+							ended: Date.now(),
+							target: targetValues,
+							answer: currentValues,
+						}]
 					);
-					props.trialFinishedCallback(data);
+					props.trialFinishedCallback();
 				}
 			}
 		>Zakończ</Button>
@@ -75,12 +77,6 @@ const Trial: React.FC<Props> = (props) => {
 };
 
 export default Trial;
-
-
-
-const dataReducer = (state, newData) => {
-	return { ...state, ...newData };
-};
 
 
 function randomInteger(min, max) {

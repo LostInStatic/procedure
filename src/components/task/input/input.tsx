@@ -24,7 +24,7 @@ const Input: React.FC<IProps> = (props) => {
 		[values]
 	);
 
-	const generateAxis = (axisData: ArrayElement<typeof props.model.scales>, index:number) => {
+	const generateAxis = (axisData: ArrayElement<typeof props.model.axes>, index:number) => {
 		return <Axis
 			onChange={(e, value) => {updateValues({value, index});}}
 			key={axisData.label}
@@ -36,7 +36,7 @@ const Input: React.FC<IProps> = (props) => {
 	};
 
 	return <div className="input container">
-		{props.model.scales.map(generateAxis)}
+		{props.model.axes.map(generateAxis)}
 	</div>;
 };
 

@@ -1,4 +1,5 @@
 import React = require('react');
+import Feedback from './components/task/feedback';
 import Trial from './components/task/trial';
 import models from './data/models';
 
@@ -27,6 +28,13 @@ const generateTrials = (model, repeats: number, type: 'study' | 'training', feed
 				/>;
 			}
 		);
+		if (type === 'training') {
+			output.push (
+				() => {
+					return <Feedback finishedCallback={callback}/>;
+				}
+			);
+		}
 	}
 	return output;
 };

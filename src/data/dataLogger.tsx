@@ -1,7 +1,7 @@
 import React = require('react');
 import { SessionData, TrialData } from './types';
 
-type State = Array<SessionData | TrialData>
+type State = TrialData[]
 
 interface ContextValue {
 	state: State,

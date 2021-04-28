@@ -3,7 +3,7 @@ import { Model } from './types';
 const models: Model[] = [
 	{
 		name: 'RGB',
-		scales: [
+		axes: [
 			{ label:'R', max: 255 },
 			{ label:'G', max: 255 },
 			{ label:'B', max: 255 }
@@ -14,7 +14,7 @@ const models: Model[] = [
 	},
 	{
 		name: 'HSL',
-		scales: [
+		axes: [
 			{ label:'H', max: 360 },
 			{ label:'S', max: 100 },
 			{ label:'L', max: 100 }
