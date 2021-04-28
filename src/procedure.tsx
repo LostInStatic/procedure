@@ -1,6 +1,8 @@
 import React = require('react');
 import Feedback from './components/task/feedback';
+import FixationPoint from './components/task/fixPoint';
 import Trial from './components/task/trial';
+import DumpData from './data/dumpData';
 import models from './data/models';
 
 const feedbackLevels = [
@@ -18,6 +20,9 @@ const trialTypes = [
 const generateTrials = (model, repeats: number, type: 'study' | 'training', feedbackLevel, callback):React.FC[] => {
 	const output = [];
 	for (let index = 0; index < repeats; index++) {
+		output.push(
+			() => <FixationPoint nextViewCallback={callback}/>
+		);
 		output.push(
 			() => {
 				return <Trial
@@ -58,7 +63,8 @@ const generateProcedure = (callback) => {
 		() => <p onClick={callback}>początek treningu</p>,
 		...generateSet('training', callback),
 		() => <p onClick={callback}>koniec treningu</p>,
-		...generateSet('study', callback)
+		...generateSet('study', callback),
+		() => <DumpData/>
 	];
 };
 
