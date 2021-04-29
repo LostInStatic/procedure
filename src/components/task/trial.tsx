@@ -4,7 +4,7 @@ import { ArrayElement, TrialData } from '../../data/types';
 import models from '../../data/models';
 import Input from './input/input';
 import Stimulus from './stimulus';
-import { useDataLogger } from '../../data/dataLogger';
+import { useDataLogger } from '../dataLogger';
 
 interface Props {
 	type: TrialData['trialType']
@@ -42,6 +42,7 @@ const Trial: React.FC<Props> = (props) => {
 
 
 	return <>
+		<p className="reminder">Przesuń suwaki tak, aby wartości odpowiadały wyświetlanemu kolorowi.</p>
 		<div className="stimuli-container">
 			<Stimulus colorStyle={props.model.setColor(targetValues)} />
 			{
@@ -58,7 +59,7 @@ const Trial: React.FC<Props> = (props) => {
 		<Button
 			variant='contained'
 			color='primary'
-			className="submit"
+			className="next-button"
 			onClick={
 				() => {
 					logger.pushData(

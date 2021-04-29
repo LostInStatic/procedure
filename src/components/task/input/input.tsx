@@ -35,7 +35,7 @@ const Input: React.FC<IProps> = (props) => {
 		/>;
 	};
 
-	return <div className="input container">
+	return <div className="input-container">
 		{props.model.axes.map(generateAxis)}
 	</div>;
 };

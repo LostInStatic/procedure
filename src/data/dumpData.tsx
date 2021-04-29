@@ -1,6 +1,6 @@
-import { Link } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 import React = require('react');
-import { useDataLogger } from './dataLogger';
+import { useDataLogger } from '../components/dataLogger';
 
 interface Props {
 
@@ -8,14 +8,23 @@ interface Props {
 
 const DumpData: React.FC<Props> = (props) => {
 
-	const data = useDataLogger();
+	const encodedJSON = encodeURIComponent(JSON.stringify(useDataLogger().state));
+	const filename = React.useMemo(() => `${Date.now().toString()}.json`, []);
 
-	return <Link
-		variant='button'
-		color='primary'
-		href={`data:text/json;charset=utf-8,${encodeURIComponent(JSON.stringify(data.state))}`}
-		download='data.json'
-	> Ściągnij dane</Link >;
+	return <>
+		<p>
+			Proszę o ściągnięcie pliku z danymi i wysłanie go na adres <a href="mailto:akowal2@st.swps.edu.pl">akowal2@st.swps.edu.pl</a>.
+			Dziękuję za udział w badaniu!
+		</p>
+		<Button
+			className='next-button'
+			component='a'
+			variant='contained'
+			color='primary'
+			href={`data:text/json;charset=utf-8,${encodedJSON}`}
+			download={filename}
+		> Ściągnij dane</Button >
+	</>;
 };
 
 export default DumpData;

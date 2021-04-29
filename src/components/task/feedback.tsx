@@ -1,6 +1,6 @@
 import { Button } from '@material-ui/core';
 import React = require('react');
-import { useDataLogger } from '../../data/dataLogger';
+import { useDataLogger } from '../dataLogger';
 import models from '../../data/models';
 import { Model, TrialData } from '../../data/types';
 import Stimulus from './stimulus';
@@ -24,7 +24,7 @@ const Feedback: React.FC<Props> = (props) => {
 		<Button
 			variant='contained'
 			color='primary'
-			className="submit"
+			className="next-button"
 			onClick={
 				() => props.finishedCallback()
 			}
