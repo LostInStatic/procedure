@@ -4,6 +4,8 @@ import FixationPoint from '../task/fixPoint';
 import Trial from '../task/trial';
 import DumpData from '../data/dumpData';
 import models from '../../data/models';
+import TextDisplay from '../instructions/textDisplay';
+import instructions from '../instructions/instructions';
 
 const feedbackLevels = [
 	'full',
@@ -46,11 +48,11 @@ const generateTrials = (model, repeats: number, type: 'study' | 'training', feed
 
 const generateSet = (type, callback):React.FC[] => {
 	let output = [];
-	models.forEach(
+	models.map(
 		model => {
-			feedbackLevels.forEach(
+			feedbackLevels.map(
 				level => {
-					output = [...output, ...generateTrials(model, 1, type, level, callback)];
+					output = [...output, ...generateTrials(model, type === 'study' ? 4 : 2, type, level, callback)];
 				}
 			);
 		}
@@ -60,9 +62,10 @@ const generateSet = (type, callback):React.FC[] => {
 
 const generateProcedure = (callback) => {
 	return [
-		() => <p onClick={callback}>początek treningu</p>,
+		() => <TextDisplay nextViewCallback={callback}>{instructions.beforeSession}</TextDisplay>,
+		() => <TextDisplay nextViewCallback={callback}>{instructions.beforeTraining}</TextDisplay>,
 		...generateSet('training', callback),
-		() => <p onClick={callback}>koniec treningu</p>,
+		() => <TextDisplay nextViewCallback={callback}>{instructions.beforeStudy}</TextDisplay>,
 		...generateSet('study', callback),
 		() => <DumpData/>
 	];
