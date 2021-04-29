@@ -1,5 +1,5 @@
 import React = require('react');
-import { SessionData, TrialData } from '../data/types';
+import { SessionData, TrialData } from '../../data/types';
 
 type State = TrialData[]
 

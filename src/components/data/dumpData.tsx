@@ -1,6 +1,6 @@
 import { Button } from '@material-ui/core';
 import React = require('react');
-import { useDataLogger } from '../components/dataLogger';
+import { useDataLogger } from './dataLogger';
 
 interface Props {
 

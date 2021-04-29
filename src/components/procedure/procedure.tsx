@@ -1,9 +1,9 @@
 import React = require('react');
-import Feedback from './components/task/feedback';
-import FixationPoint from './components/task/fixPoint';
-import Trial from './components/task/trial';
-import DumpData from './data/dumpData';
-import models from './data/models';
+import Feedback from '../task/feedback';
+import FixationPoint from '../task/fixPoint';
+import Trial from '../task/trial';
+import DumpData from '../data/dumpData';
+import models from '../../data/models';
 
 const feedbackLevels = [
 	'full',

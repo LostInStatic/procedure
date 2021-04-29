@@ -1,6 +1,6 @@
 import { Button } from '@material-ui/core';
 import React = require('react');
-import { useDataLogger } from '../dataLogger';
+import { useDataLogger } from '../data/dataLogger';
 import models from '../../data/models';
 import { Model, TrialData } from '../../data/types';
 import Stimulus from './stimulus';

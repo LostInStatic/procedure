@@ -4,7 +4,7 @@ import { ArrayElement, TrialData } from '../../data/types';
 import models from '../../data/models';
 import Input from './input/input';
 import Stimulus from './stimulus';
-import { useDataLogger } from '../dataLogger';
+import { useDataLogger } from '../data/dataLogger';
 
 interface Props {
 	type: TrialData['trialType']
