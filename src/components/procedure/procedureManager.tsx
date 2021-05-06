@@ -1,7 +1,7 @@
 import React = require('react');
 import models from '../../data/models';
 import generateProcedure from './procedure';
-import Trial from '../task/trial';
+import Trial from '../task/task';
 
 interface IProps {
 

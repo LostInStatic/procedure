@@ -1,6 +1,6 @@
 import { Button } from '@material-ui/core';
 import React = require('react');
-import { ArrayElement, TrialData } from '../../data/types';
+import { ArrayElement, Model, TrialData } from '../../data/types';
 import models from '../../data/models';
 import Input from './input/input';
 import Stimulus from './stimulus';
@@ -24,9 +24,9 @@ const Trial: React.FC<Props> = (props) => {
 	);
 
 	React.useEffect(
-		() => setTargetValues([...props.model.axes.map(
-			element => randomInteger(0, element.max / 10) * 10
-		)]),
+		() => setTargetValues(
+			createTargetValues(props.model)
+		),
 		[]
 	);
 
@@ -83,3 +83,10 @@ export default Trial;
 function randomInteger(min, max) {
 	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
+const createTargetValues = (model: Model) => {
+	return [...model.axes.map(
+		element => randomInteger(1, element.max / 10 - 1) * 10
+	)
+	];
+};
