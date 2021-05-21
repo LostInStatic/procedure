@@ -62,7 +62,7 @@ const Trial: React.FC<Props> = (props) => {
 			className="next-button"
 			onClick={
 				() => {
-					logger.pushData(
+					logger.pushTrial(
 						[{
 							...data,
 							ended: Date.now(),

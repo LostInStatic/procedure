@@ -8,11 +8,12 @@ import TextDisplay from '../instructions/textDisplay';
 import instructions from '../instructions/instructions';
 import { FeedbackLevel, Model, ModelName, TrialType } from '../../data/types';
 import feedbackLevels from '../../data/feedbackLevels';
+import Form from '../form/form';
 
 
 const CONFIG = {
-	trainingRepeats: 1,
-	studyRepeats: 1
+	trainingRepeats: 2,
+	studyRepeats: 4
 };
 
 const generateTrial = (model: Model, repeats: number, type: TrialType, feedbackLevel: FeedbackLevel, callback): React.FC[] => {
@@ -67,7 +68,9 @@ const generateSet = (type: TrialType, model: Model, callback): React.FC[] => {
 
 const generateProcedure = (callback) => {
 	return [
-		() => <TextDisplay nextViewCallback={callback}><p>{instructions.beforeSession}</p></TextDisplay>,
+		() => <TextDisplay nextViewCallback={callback}><p>{instructions.beforeForm}</p></TextDisplay>,
+		() => <Form nextView={callback}/>,
+		() => <TextDisplay nextViewCallback={callback}><p>{instructions.beforeTask}</p></TextDisplay>,
 		...flattenArray(shuffleArray([
 			[
 				() => <TextDisplay nextViewCallback={callback}>

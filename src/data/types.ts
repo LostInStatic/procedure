@@ -9,7 +9,7 @@ export type FeedbackLevel = 'full' | 'values' | 'minimal'
 export interface Model {
 	name: ModelName,
 	axes: { label: string, max: number }[],
-	setColor: (values: number[]) => {backgroundColor: string}
+	setColor: (values: number[]) => { backgroundColor: string }
 }
 
 export interface TrialData {
@@ -20,8 +20,4 @@ export interface TrialData {
 	model: ModelName,
 	trialType: TrialType,
 	feedbackLevel: FeedbackLevel
-}
-
-export interface SessionData {
-	id: number
 }

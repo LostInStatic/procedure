@@ -8,8 +8,8 @@ interface Props {
 
 const DumpData: React.FC<Props> = (props) => {
 
-	const encodedJSON = encodeURIComponent(JSON.stringify(useDataLogger().state));
-	const filename = React.useMemo(() => `${Date.now().toString()}.json`, []);
+	const encodedJSON = encodeURIComponent(JSON.stringify(useDataLogger()));
+	const filename = React.useMemo(() => `${useDataLogger().session.id}.json`, []);
 
 	return <>
 		<p>

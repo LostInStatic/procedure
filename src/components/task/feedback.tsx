@@ -10,7 +10,7 @@ interface Props {
 }
 
 const Feedback: React.FC<Props> = (props) => {
-	const [result] = useDataLogger().state.slice(-1);
+	const [result] = useDataLogger().trials.slice(-1);
 	const model = models.find(model => model.name === result.model);
 
 	return <>

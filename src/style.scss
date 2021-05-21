@@ -64,7 +64,7 @@ p {
 	font-size: 60px;
 }
 
-.text {
+.text, .entry-form {
 	max-width: 700px;
 	line-height: 1.5em;
 	background-color: rgba($color: #000000, $alpha: 0.2);
@@ -78,4 +78,8 @@ p {
 
 .text p:last-child{
 	margin-bottom: 0;
+}
+
+.entry-form label, input, div {
+	color: white !important
 }

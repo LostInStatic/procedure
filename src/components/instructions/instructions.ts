@@ -1,5 +1,8 @@
 const instructions = {
-	beforeSession: `
+	beforeForm: `
+		Dziękuję za chęć wzięcia udziału w badaniu. Po wciśnięciu przycisku "dalej" wyświetli się krótki formularz. Po wypełnieniu go przejdziesz do części eksperymentalnej. Badanie potrwa około 20 minut.
+	`,
+	beforeTask: `
 		W tym badaniu twoje zadanie będzie polegać na dopasowywaniu wartości modelu (za pomocą suwaków) do przedstawionego koloru. Będziesz operować na dwóch modelach - RGB oraz HSL. Dla każdego modelu czekają cię kolejno dwie serie zadań - treningowa i badawcza. Podczas serii treningowej zadania będą prezentowane z rosnącym poziomem trudności. Po każdej odpowiedzi pojawi się plansza z informacją zwrotną. Podczas sesji eksperymentalnej kolejność będzie losowa, a informacja zwrotna nie będzie wyświetlana. Będziesz manipulował wartościami modelu za pomocą trzech suwaków - każdy odpowiada pojedyńczej skali modelu. Dla uproszczenia suwaki przeskakują wartości co dziesięć.  Kliknij "dalej" aby kontynuować.
 	`,
 	beforeTraining: `
