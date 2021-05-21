@@ -16,13 +16,14 @@ const CONFIG = {
 	studyRepeats: 4
 };
 
-const generateTrial = (model: Model, repeats: number, type: TrialType, feedbackLevel: FeedbackLevel, callback): React.FC[] => {
-	const output = [];
+const generateTrials = (model: Model, repeats: number, type: TrialType, feedbackLevel: FeedbackLevel, callback): React.FC[] => {
+	let output = [];
 	for (let index = 0; index < repeats; index++) {
-		output.push(
+		const trial = [];
+		trial.push(
 			() => <FixationPoint nextViewCallback={callback} />
 		);
-		output.push(
+		trial.push(
 			() => {
 				return <Trial
 					model={model}
@@ -33,12 +34,16 @@ const generateTrial = (model: Model, repeats: number, type: TrialType, feedbackL
 			}
 		);
 		if (type === 'training') {
-			output.push(
+			trial.push(
 				() => {
 					return <Feedback finishedCallback={callback} />;
 				}
 			);
 		}
+		output.push(trial);
+	}
+	if (type === 'study') {
+		output = shuffleArray(output);
 	}
 	return output;
 };
@@ -49,7 +54,7 @@ const generateSet = (type: TrialType, model: Model, callback): React.FC[] => {
 	feedbackLevels.map(
 		level => {
 			trials.push(
-				generateTrial(
+				generateTrials(
 					model,
 					type === 'study' ? CONFIG.studyRepeats : CONFIG.trainingRepeats,
 					type,
@@ -59,11 +64,13 @@ const generateSet = (type: TrialType, model: Model, callback): React.FC[] => {
 			);
 		}
 	);
+	console.log(trials);
+	trials = trials.flat();
+	console.log(trials);
 	if (type === 'study') {
 		trials = shuffleArray(trials);
 	}
-
-	return flattenArray(trials);
+	return trials.flat(Infinity);
 };
 
 const generateProcedure = (callback) => {
@@ -98,7 +105,6 @@ const generateProcedure = (callback) => {
 export default generateProcedure;
 
 const shuffleArray = (arr: any[]) => {
-	console.log(arr);
 	const array = [...arr];
 	for (let i = array.length - 1; i > 0; i--) {
 		const j = Math.floor(Math.random() * (i + 1));
