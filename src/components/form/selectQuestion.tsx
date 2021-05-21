@@ -10,8 +10,8 @@ interface Props {
 
 const SelectQuestion: React.FC<Props> = (props) => {
 
-	return <>
-		<InputLabel id={props.question.id}>{props.question.label}</InputLabel>
+	return <InputLabel id={props.question.id}>
+		{props.question.label}
 		<Select
 			fullWidth
 			labelId={props.question.id}
@@ -27,7 +27,7 @@ const SelectQuestion: React.FC<Props> = (props) => {
 				)
 			}
 		</Select>
-	</>;
+	</InputLabel>;
 };
 
 export default SelectQuestion;

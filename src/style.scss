@@ -2,6 +2,7 @@ body {
 	background-color: gray;
 	margin: 0;
 	color: white;
+	font-family: "Roboto", "Helvetica", "Arial", sans-serif;
 }
 
 a {
@@ -80,6 +81,13 @@ p {
 	margin-bottom: 0;
 }
 
-.entry-form label, input, div {
-	color: white !important
+.entry-form label, input, .MuiIconButton-root, .MuiSelect-root, .MuiIconButton-root.Mui-checked{
+	color: white !important;
+	border-color: white;
+}
+
+label.MuiFormLabel-root {
+	margin-top: 1.5em;
+	font-size: 1.2rem !important;
+	line-height: 1.5em;
 }
