@@ -1,4 +1,4 @@
-import { RadioGroup, FormControlLabel, Radio } from '@material-ui/core';
+import { RadioGroup, FormControlLabel, Radio, InputLabel } from '@material-ui/core';
 import { FormikContextType } from 'formik';
 import React = require('react');
 import { ClosedQuestion } from './questions';
@@ -10,23 +10,24 @@ interface Props {
 
 const RadioQuestion: React.FC<Props> = (props) => {
 
-	return <label>
+	return <InputLabel id={props.question.id}>
 		{props.question.label}
 		<RadioGroup row name={props.question.id} value={props.formik.values[props.question.id]} onChange={props.formik.handleChange}>
 			{
 				props.question.answers.map(
 					answer => {
 						return <FormControlLabel
-							control={<Radio />}
+							control={<Radio/>}
 							value={answer.id}
 							key={answer.id}
 							label={answer.label}
+							labelPlacement="bottom"
 						/>;
 					}
 				)
 			}
 		</RadioGroup>
-	</label>;
+	</InputLabel>;
 };
 
 export default RadioQuestion;

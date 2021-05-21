@@ -1,7 +1,11 @@
+$spacing-base: 2rem;
+
+
 body {
 	background-color: gray;
 	margin: 0;
 	color: white;
+	font-family: "Roboto", "Helvetica", "Arial", sans-serif;
 }
 
 a {
@@ -10,7 +14,7 @@ a {
 
 .root {
 	display: flex;
-	height: 100vh;
+	min-height: 100vh;
 	flex-direction: column;
 	margin: auto auto;
 	background-color: gray;
@@ -66,10 +70,14 @@ p {
 
 .text, .entry-form {
 	max-width: 700px;
-	line-height: 1.5em;
+	
 	background-color: rgba($color: #000000, $alpha: 0.2);
-	padding: 1em;
-	font-size: 120%;
+	padding: $spacing-base;
+}
+
+.text {
+	line-height: 1.5em;
+	font-size: 1.2rem;
 }
 
 .text p {
@@ -80,6 +88,17 @@ p {
 	margin-bottom: 0;
 }
 
-.entry-form label, input, div {
-	color: white !important
+.entry-form label, input, .MuiIconButton-root, .MuiSelect-root, .MuiIconButton-root.Mui-checked{
+	color: white !important;
+	border-color: white;
+}
+
+label.MuiFormLabel-root{
+	margin-top: $spacing-base;
+	font-size: 1.2rem !important;
+	line-height: 1.5em;
+}
+
+.MuiButton-fullWidth {
+	margin-top: $spacing-base;
 }

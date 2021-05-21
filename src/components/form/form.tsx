@@ -42,7 +42,8 @@ const getInitialValues = () => {
 	const output = {};
 	questionnaire.map(
 		question => {
-			output[question.id] = question.placeholderValue || null;
+			output[question.id] = question.placeholderValue ||
+			question.type === 'number' ? 0 : '';
 		}
 	);
 	return output;
