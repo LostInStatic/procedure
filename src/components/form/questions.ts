@@ -118,16 +118,34 @@ export const questionnaire: Question[] = [
 				label: 'Grafik komputerowy'
 			},
 			{
-				id: 'compGraphics',
-				label: 'Grafik komputerowy'
+				id: 'graphics',
+				label: 'Grafik/projektant'
 			}
 
 		]
 	},
 	{
-		id: 'freqColorModels',
+		id: 'freqColorModelsUse',
 		type: 'radio',
-		label: 'Jak często korzystasz z modeli kolorów?',
+		label: 'Jak często zdarza ci się wybierać kolor w interfejsie graficznym? (n.p. wybór kolor w Photoshopie)',
+		answers: answers.frequency
+	},
+	{
+		id: 'freqNumericValuesUse',
+		type: 'radio',
+		label: 'Jak często przy pracy z kolorami bezpośrednio edytujesz wartości liczbowe modelu?',
+		answers: answers.frequency
+	},
+	{
+		id: 'freqRGBUse',
+		type: 'radio',
+		label: 'Jak często korzystasz z modelu RGB?',
+		answers: answers.frequency
+	},
+	{
+		id: 'freqHSLUse',
+		type: 'radio',
+		label: 'Jak często korzystasz z modelu HSL?',
 		answers: answers.frequency
 	}
 ];
