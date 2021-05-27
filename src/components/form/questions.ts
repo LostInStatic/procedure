@@ -16,25 +16,31 @@ export interface ClosedQuestion {
 	}[]
 }
 
-export type Question = OpenQuestion | ClosedQuestion
+export interface Divider {
+	type: 'divider',
+	title?: string,
+	description: string
+}
+
+export type FormItem = OpenQuestion | ClosedQuestion | Divider
 
 const answers = {
 	boolean: [
 		{id: 'true', label: 'Tak'},
 		{id: 'false', label: 'Nie'}
 	],
-	frequency: [
+	priorExperience: [
 		{id: '0', label: 'Nigdy'},
-		{id: '1', label: 'Sporadycznie'},
-		{id: '2', label: 'Czasami'},
+		{id: '1', label: 'Kilka razy'},
+		{id: '2', label: 'Wielokrotnie'},
 		{id: '3', label: 'Regularnie'},
-		{id: '4', label: 'Codziennie'}
+		{id: '4', label: 'Niemal codziennie'}
 	]
 };
 
 
 
-export const questionnaire: Question[] = [
+export const questionnaire: FormItem[] = [
 	{
 		id: 'age',
 		type: 'number',
@@ -66,7 +72,7 @@ export const questionnaire: Question[] = [
 	{
 		id: 'daltonism',
 		type: 'radio',
-		label: 'Czy jesteś daltonistą?',
+		label: 'Czy masz stwierdzony daltonizm lub inne zaburzenie postrzegania kolorów?',
 		answers: answers.boolean
 	},
 	{
@@ -89,26 +95,14 @@ export const questionnaire: Question[] = [
 			{
 				id: 'higher',
 				label:'Wyższe'
-			},
-			{
-				id:'NA',
-				label: 'Wolę nie podawać'
 			}
 		]
 	},
 	{
 		id: 'trade',
 		type: 'multiple',
-		label: 'Ze względu na wykształcenie/pełniony zawód określiłbyś się jako (zaznacz wszystkie pasujące odpowiedzi):',
+		label: 'Czy określił(a)byś się jako (zaznacz wszystkie pasujące odpowiedzi):',
 		answers: [
-			{
-				id:'frontEnd',
-				label: 'Programista UI'
-			},
-			{
-				id:'otherDev',
-				label: 'Inny programista'
-			},
 			{
 				id: 'UIDesigner',
 				label: 'Projektant UI'
@@ -120,32 +114,54 @@ export const questionnaire: Question[] = [
 			{
 				id: 'graphics',
 				label: 'Grafik/projektant'
-			}
-
+			},
+			{
+				id: 'artist',
+				label: 'Artysta'
+			},
+			{
+				id:'frontEnd',
+				label: 'Programista UI'
+			},
+			{
+				id:'otherDev',
+				label: 'Inny programista'
+			},
 		]
+	},
+	{
+		type: 'divider',
+		title: 'Jak dużo/często zdarzało ci się:',
+		description: 'Jeśli terminy użyte w pytaniu nie są dla ciebie jasne, zaznacz odpowiedź "Nigdy"'
+	},
+	{
+		id: 'freqColorMix',
+		type: 'radio',
+		label: 'Mieszać barwniki? (n.p. przy malowaniu farbami)',
+		answers: answers.priorExperience
 	},
 	{
 		id: 'freqColorModelsUse',
 		type: 'radio',
-		label: 'Jak często zdarza ci się wybierać kolor w interfejsie graficznym? (n.p. wybór kolor w Photoshopie)',
-		answers: answers.frequency
+		label: 'Wybierać kolor w interfejsie graficznym? (n.p. wybór koloru w Photoshopie)',
+		answers: answers.priorExperience
 	},
 	{
 		id: 'freqNumericValuesUse',
 		type: 'radio',
-		label: 'Jak często przy pracy z kolorami bezpośrednio edytujesz wartości liczbowe modelu?',
-		answers: answers.frequency
+		label: 'Przy pracy z kolorami bezpośrednio edytować wartości liczbowe modelu?',
+		answers: answers.priorExperience
 	},
 	{
 		id: 'freqRGBUse',
 		type: 'radio',
-		label: 'Jak często korzystasz z modelu RGB?',
-		answers: answers.frequency
+		label: 'Korzystać z modelu RGB?',
+		answers: answers.priorExperience
 	},
 	{
 		id: 'freqHSLUse',
 		type: 'radio',
-		label: 'Jak często korzystasz z modelu HSL?',
-		answers: answers.frequency
+		label: 'Korzystać z modelu HSL?',
+		answers: answers.priorExperience
 	}
 ];

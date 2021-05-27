@@ -5,9 +5,10 @@ import React = require('react');
 import { useDataLogger } from '../data/dataLogger';
 import RadioQuestion from './radioQuestion';
 import NumericQuestion from './numericQuestion';
-import { Question, questionnaire } from './questions';
+import { ClosedQuestion, FormItem, OpenQuestion, questionnaire } from './questions';
 import SelectQuestion from './selectQuestion';
 import MultipleChoiceQuestion from './multipleChoiceQuestion';
+import Divider from './divider';
 
 interface Props {
 	nextView: () => void;
@@ -39,11 +40,15 @@ const EntryForm: React.FC<Props> = (props) => {
 export default EntryForm;
 
 const getInitialValues = () => {
-	const output = {};
-	questionnaire.map(
+	const output = {
+		id: Date.now()
+	};
+	questionnaire.filter(
+		(item): item is OpenQuestion | ClosedQuestion => item.type !== 'divider'
+	).map(
 		question => {
 			output[question.id] = question.placeholderValue ||
-			question.type === 'number' ? 0 : '';
+				question.type === 'number' ? 0 : '';
 		}
 	);
 	return output;
@@ -53,16 +58,18 @@ const generateQuestions = (formik: FormikContextType<any>) => {
 	return questionnaire.map(question => generateQuestion(question, formik));
 };
 
-const generateQuestion = (question: Question, formik: FormikContextType<any>): JSX.Element => {
-	switch (question.type) {
+const generateQuestion = (item: FormItem, formik: FormikContextType<any>): JSX.Element => {
+	switch (item.type) {
 		case 'number':
-			return <NumericQuestion formik={formik} question={question} key={question.id} />;
+			return <NumericQuestion formik={formik} question={item} key={item.id} />;
 		case 'select':
-			return <SelectQuestion formik={formik} question={question} key={question.id} />;
+			return <SelectQuestion formik={formik} question={item} key={item.id} />;
 		case 'radio':
-			return <RadioQuestion formik={formik} question={question} key={question.id} />;
+			return <RadioQuestion formik={formik} question={item} key={item.id} />;
 		case 'multiple':
-			return <MultipleChoiceQuestion formik={formik} question={question} key={question.id} />;
+			return <MultipleChoiceQuestion formik={formik} question={item} key={item.id} />;
+		case 'divider':
+			return <Divider title={item.title} description={item.description} />;
 		default:
 			break;
 	}

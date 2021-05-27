@@ -8,8 +8,17 @@ body {
 	font-family: "Roboto", "Helvetica", "Arial", sans-serif;
 }
 
+hr {
+	color: white;
+	margin: $spacing-base 0;
+}
+
 a {
 	color: lightblue;
+}
+
+.form-section h2 {
+	margin-bottom: 0.5em;
 }
 
 .root {
