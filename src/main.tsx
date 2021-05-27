@@ -6,6 +6,14 @@ import ProcedureManager from './components/procedure/procedureManager';
 import DataLogger from './components/data/dataLogger';
 import { StylesProvider } from '@material-ui/styles';
 
+
+document.documentElement.addEventListener('click', () => {
+	if (!document.fullscreenElement) document.documentElement.requestFullscreen();
+});
+
+
+
+
 ReactDOM.render(
 	<DataLogger>
 		<StylesProvider injectFirst>
