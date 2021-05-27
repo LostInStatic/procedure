@@ -13,8 +13,7 @@ const DumpData: React.FC<Props> = (props) => {
 
 	return <>
 		<p>
-			Proszę o ściągnięcie pliku z danymi i wysłanie go na adres <a href="mailto:akowal2@st.swps.edu.pl">akowal2@st.swps.edu.pl</a>.
-			Dziękuję za udział w badaniu!
+			Proszę o ściągnięcie i zapisanie pliku z danymi. Następnie przełącz się na kartę RealEye (nie zamykaj tej!), kliknij w dowolnym miejscu i wykonaj następne polecenia.
 		</p>
 		<Button
 			className='next-button'
