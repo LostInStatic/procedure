@@ -6,6 +6,7 @@ import { ArrayElement } from '../../../data/types';
 interface IProps {
 	reportChange: (values: number[]) => void
 	displayValues?: boolean
+	displayGradients?: boolean
 	model: ArrayElement<typeof models>;
 }
 
@@ -32,6 +33,7 @@ const Input: React.FC<IProps> = (props) => {
 			min={0}
 			max={axisData.max}
 			displayValue={props.displayValues}
+			gradientCSS={props.displayGradients ? axisData.gradientCSS : undefined}
 		/>;
 	};
 

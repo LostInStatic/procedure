@@ -53,7 +53,8 @@ const Trial: React.FC<Props> = (props) => {
 		</div>
 		<Input
 			model={props.model}
-			displayValues={props.feedbackLevel === 'values' || props.feedbackLevel === 'full'}
+			displayValues={props.feedbackLevel !== 'minimal'} 
+			displayGradients={props.feedbackLevel === 'gradients'}
 			reportChange={values => setCurrentValues([...values])}
 		/>
 		<Button

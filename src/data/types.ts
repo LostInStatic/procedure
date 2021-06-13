@@ -4,11 +4,11 @@ export type ModelName = 'RGB' | 'HSL'
 
 export type TrialType = 'training' | 'study'
 
-export type FeedbackLevel = 'full' | 'values' | 'minimal'
+export type FeedbackLevel = 'full' | 'gradients' | 'values' | 'minimal'
 
 export interface Model {
 	name: ModelName,
-	axes: { label: string, max: number }[],
+	axes: { label: string, max: number, gradientCSS?: string }[],
 	setColor: (values: number[]) => { backgroundColor: string }
 }
 
