@@ -3,7 +3,7 @@ const { merge } = require('webpack-merge');
 const common = require('./webpack.common.js');
 
 const extractCss = require('mini-css-extract-plugin');
-const miniCss = require('optimize-css-assets-webpack-plugin');
+const miniCss = require('css-minimizer-webpack-plugin');
 const miniJs = require('terser-webpack-plugin');
 
 
