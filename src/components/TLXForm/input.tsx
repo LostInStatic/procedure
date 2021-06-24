@@ -12,7 +12,7 @@ interface Props {
 
 const TLXInput: React.FC<Props> = (props) => {
 
-	const defaultValue = 3;
+	const defaultValue = 4;
 	React.useEffect(
 		() => {
 			props.onChange(null, defaultValue);

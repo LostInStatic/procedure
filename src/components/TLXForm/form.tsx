@@ -51,22 +51,40 @@ interface Question {
 		max: string
 	}
 }
+
+const labelsHighLow = {
+	min: 'Bardzo mało',
+	max: 'Bardzo dużo'
+};
+
 const questions: Question[] = [
 	{
-		id: 'Test',
-		label: 'Test question?',
+		id: 'mental',
+		label: 'Jak psychicznie obciążające było to zadanie?',
+		axisLabels: labelsHighLow
+	},
+	{
+		id: 'physical',
+		label: 'Jak fizycznie wymagające było to zadanie?',
+		axisLabels: labelsHighLow
+	},
+	{
+		id: 'performance',
+		label: 'Jak skuteczny/a byłaś w wypełnieniu zadania, o które byłeś/aś poproszony/a?',
 		axisLabels: {
-			min: 'min',
-			max: 'max'
+			min: 'Idealnie',
+			max: 'Porażka'
 		}
 	},
 	{
-		id: '2',
-		label: 'Two?',
-		axisLabels: {
-			min: 'XD',
-			max: 'DX'
-		}
+		id: 'effort',
+		label: 'Jak ciężko musiałeś/aś pracować, by osiągnąć dany poziom wykonania zadania? ',
+		axisLabels: labelsHighLow
+	},
+	{
+		id: 'frustration',
+		label: 'Jak niepewny/a, zniechęcony/a, zirytowany/a, zestresowany/a lub zdenerwowany/a byłeś/aś podczas zadania?',
+		axisLabels: labelsHighLow
 	}
-
 ];
+
