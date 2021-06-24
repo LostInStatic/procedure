@@ -9,6 +9,8 @@ import instructions from '../instructions/instructions';
 import { FeedbackLevel, Model, ModelName, TrialType } from '../../data/types';
 import feedbackLevels from '../../data/feedbackLevels';
 import Form from '../entryForm/form';
+import TLXInput from '../TLXForm/input';
+import TLXForm from '../TLXForm/form';
 
 
 const CONFIG = {
@@ -64,13 +66,17 @@ const generateSet = (type: TrialType, model: Model, callback): React.FC[] => {
 			);
 		}
 	);
-	console.log(trials);
 	trials = trials.flat();
-	console.log(trials);
 	if (type === 'study') {
 		trials = shuffleArray(trials);
 	}
 	return trials.flat(Infinity);
+};
+
+const generateTLX = (model: ModelName, callback) => {
+	const forms = [];
+	feedbackLevels.map( level => {forms.push( () => <TLXForm model={model} feedbackLevel={level} formFinishedCallback={callback}/>);} );
+	return forms;
 };
 
 const generateProcedure = (callback) => {
@@ -86,7 +92,8 @@ const generateProcedure = (callback) => {
 				</TextDisplay>,
 				...generateSet('training', models[0], callback),
 				() => <TextDisplay nextViewCallback={callback}><p>{instructions.beforeStudy}</p></TextDisplay>,
-				...generateSet('study', models[0], callback)
+				...generateSet('study', models[0], callback),
+				...generateTLX('RGB', callback)
 			],
 			[
 				() => <TextDisplay nextViewCallback={callback}>
@@ -95,7 +102,8 @@ const generateProcedure = (callback) => {
 				</TextDisplay>,
 				...generateSet('training', models[1], callback),
 				() => <TextDisplay nextViewCallback={callback}><p>{instructions.beforeStudy}</p></TextDisplay>,
-				...generateSet('study', models[1], callback)
+				...generateSet('study', models[1], callback),
+				...generateTLX('HSL', callback)
 			],
 		])),
 		() => <DumpData />
