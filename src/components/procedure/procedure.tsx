@@ -8,7 +8,7 @@ import TextDisplay from '../instructions/textDisplay';
 import instructions from '../instructions/instructions';
 import { FeedbackLevel, Model, ModelName, TrialType } from '../../data/types';
 import feedbackLevels from '../../data/feedbackLevels';
-import Form from '../form/form';
+import Form from '../entryForm/form';
 
 
 const CONFIG = {
