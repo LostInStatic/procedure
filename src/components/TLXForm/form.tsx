@@ -106,7 +106,7 @@ const questions: Question[] = [
 
 const feedbackLevelsTextMap:{level:FeedbackLevel, text: string}[] = [
 	{level: 'full', text: 'dwa kolorowe koła, trzeba było dopasować prawe do lewego.'},
-	{level: 'gradients', text: 'kolorowe suwaki z gradientem oraz pojedyncze koło'},
-	{level: 'values', text: 'niebieskie suwaki oraz pojedyncze koło'}
+	{level: 'gradients', text: 'kolorowe suwaki z gradientem oraz pojedyncze koło.'},
+	{level: 'values', text: 'identyczne, niebieskie suwaki oraz pojedyncze koło.'}
 ];
 
