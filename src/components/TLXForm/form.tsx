@@ -1,44 +1,60 @@
 import { Button } from '@material-ui/core';
 import React = require('react');
+import { FeedbackLevel, ModelName } from '../../data/types';
 import { useDataLogger } from '../data/dataLogger';
 import TLXInput from './input';
 
 interface Props {
-	
+	model: ModelName,
+	feedbackLevel: FeedbackLevel,
+	formFinishedCallback: () => void;
 }
 
 const TLXForm: React.FC<Props> = (props) => {
 	const logger = useDataLogger();
 
 	const [values, updateValues] = React.useReducer(
-		(state, change: { value: number, id: string})  => {
+		(state, change: { value: number, id: string }) => {
 			state[change.id] = change.value;
-			return {...state};
+			return { ...state };
 		},
 		{}
 	);
 
 
-	return <>
-		{questions.map(
-			question => <TLXInput
-				key={question.id}
-				label={question.label}
-				axisLabels={question.axisLabels}
-				onChange={(e, value) => updateValues({value: value, id: question.id})}
-			/>
-		)}
+	return <form>
+
+		<p>Wypełnij formularz, biorąc pod uwagę TYLKO typ zadania, w którym wyświetlane były {feedbackLevelsTextMap.find((el) => props.feedbackLevel === el.level).text}</p>
+		
+		<div className="tlx-questions">
+			{questions.map(
+				question => <TLXInput
+					key={question.id}
+					label={question.label}
+					axisLabels={question.axisLabels}
+					onChange={(e, value) => updateValues({ value: value, id: question.id })}
+				/>
+			)}
+		</div>
+
 		<Button
 			variant='contained'
 			color='primary'
 			className="next-button"
 			onClick={
 				() => {
-					console.log(values);
+					logger.pushTLX(
+						[{
+							model: props.model,
+							feedbackLevel: props.feedbackLevel,
+							...values
+						}]
+					);
+					props.formFinishedCallback();
 				}
 			}
-		>Zakończ</Button>
-	</>;
+		>Dalej</Button>
+	</form>;
 };
 
 export default TLXForm;
@@ -86,5 +102,11 @@ const questions: Question[] = [
 		label: 'Jak niepewny/a, zniechęcony/a, zirytowany/a, zestresowany/a lub zdenerwowany/a byłeś/aś podczas zadania?',
 		axisLabels: labelsHighLow
 	}
+];
+
+const feedbackLevelsTextMap:{level:FeedbackLevel, text: string}[] = [
+	{level: 'full', text: 'dwa kolorowe koła, trzeba było dopasować prawe do lewego.'},
+	{level: 'gradients', text: 'kolorowe suwaki z gradientem oraz pojedyncze koło'},
+	{level: 'values', text: 'niebieskie suwaki oraz pojedyncze koło'}
 ];
 

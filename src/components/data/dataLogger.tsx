@@ -6,12 +6,14 @@ type Trials = TrialData[]
 interface ContextValue {
 	session: any
 	trials: Trials,
+	TLXResults: any,
 	pushTrial: (state: Trials) => void
+	pushTLX: (state: any) => void
 	recordSessionData: (state: any) => void
 }
 
 interface IProps {
-	
+
 }
 
 const Context = React.createContext<ContextValue>(null);
@@ -25,13 +27,23 @@ export const useDataLogger = (): ContextValue => {
 };
 
 export const DataLogger: React.FC = (props) => {
-	const [trials, updateTrials] = React.useReducer(
-		mergeTrials,
+	const [trials, addTrial] = React.useReducer(
+		addRecord,
+		[]);
+	const [TLXresults, addTLX] = React.useReducer(
+		addRecord,
 		[]);
 	const [session, updateSessionData] = React.useState(null);
 
 	return (
-		<Context.Provider value={{ session: session, trials: trials, pushTrial: updateTrials, recordSessionData: updateSessionData}}>
+		<Context.Provider value={{
+			session: session,
+			trials: trials,
+			TLXResults: TLXresults,
+			pushTrial: addTrial,
+			pushTLX: addTLX,
+			recordSessionData: updateSessionData
+		}}>
 			{props.children}
 		</Context.Provider>
 	);
@@ -39,4 +51,4 @@ export const DataLogger: React.FC = (props) => {
 
 export default DataLogger;
 
-const mergeTrials = (state: Trials, value: Trials) => [...state, ...value];
+const addRecord = (state, value) => [...state, ...value];
