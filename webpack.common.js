@@ -16,12 +16,6 @@ module.exports = {
 		path: outputPath,
 		filename: '[name].js'
 	},
-	devServer: {
-		contentBase: outputPath,
-		watchContentBase: true,
-		disableHostCheck: true,
-		port: 8080
-	},
 	module: {
 		rules: [
 			{
