@@ -4,6 +4,8 @@ import { useDataLogger } from '../data/dataLogger';
 import models from '../../data/models';
 import { Model, TrialData } from '../../data/types';
 import Stimulus from './stimulus';
+import colorDifference from '../../data/deltaE';
+import Color from 'colorjs.io';
 
 interface Props {
 	finishedCallback: () => void
@@ -12,6 +14,10 @@ interface Props {
 const Feedback: React.FC<Props> = (props) => {
 	const [result] = useDataLogger().trials.slice(-1);
 	const model = models.find(model => model.name === result.model);
+	const difference = colorDifference(
+		new Color(model.setColor(result.target).backgroundColor), 
+		new Color(model.setColor(result.answer).backgroundColor)
+	);
 
 	return <>
 		<div className="stimuli-container">
@@ -19,6 +25,8 @@ const Feedback: React.FC<Props> = (props) => {
 			<Stimulus colorStyle={model.setColor(result.answer)} />
 		</div>
 		<div className="feedback">
+			<div className="feedback-message">{difference.description}</div>
+			<div className="deltaE">Różnica między kolorami: {Math.floor(difference.deltaE)}</div>
 			{generateFeedbackTable(model, result.target, result.answer)}
 		</div>
 		<Button
