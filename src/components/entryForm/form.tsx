@@ -69,7 +69,7 @@ const generateQuestion = (item: FormItem, formik: FormikContextType<any>): JSX.E
 		case 'multiple':
 			return <MultipleChoiceQuestion formik={formik} question={item} key={item.id} />;
 		case 'divider':
-			return <Divider title={item.title} description={item.description} />;
+			return <Divider title={item.title} description={item.description} key={item.title} />;
 		default:
 			break;
 	}

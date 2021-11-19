@@ -42,9 +42,9 @@ const answers = {
 
 export const questionnaire: FormItem[] = [
 	{
-		id: 'age',
+		id: 'birthdate',
 		type: 'number',
-		label: 'Wiek:'
+		label: 'Rok urodzenia:'
 	},
 	{
 		id:'gender',
