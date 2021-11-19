@@ -11,6 +11,8 @@ import feedbackLevels from '../../data/feedbackLevels';
 import Form from '../entryForm/form';
 import TLXInput from '../TLXForm/input';
 import TLXForm from '../TLXForm/form';
+import BlindnessTest from '../blindnessTest/test';
+import { shuffleArray } from './shuffleArray';
 
 
 const CONFIG = {
@@ -75,14 +77,25 @@ const generateSet = (type: TrialType, model: Model, callback): React.FC[] => {
 
 const generateTLX = (model: ModelName, callback) => {
 	const forms = [];
+	forms.push(() => <TextDisplay nextViewCallback={callback}><p>{instructions.beforeTLX}</p></TextDisplay>);
 	feedbackLevels.map( level => {forms.push( () => <TLXForm model={model} feedbackLevel={level} formFinishedCallback={callback}/>);} );
 	return forms;
+};
+
+const generateBlindnessTrials = (callback) => {
+	const lightnessLevels = [0.40, 0.45, 0.50, 0.55, 0.60, 0.65, 0.70, 0.75, 0.80];
+	return lightnessLevels.map(level => {
+		// eslint-disable-next-line react/display-name
+		return () => <BlindnessTest trialFinishedCallback={callback} targetLightness={level}/>;
+	});
 };
 
 const generateProcedure = (callback) => {
 	return [
 		() => <TextDisplay nextViewCallback={callback}><p>{instructions.beforeForm}</p></TextDisplay>,
 		() => <Form nextView={callback}/>,
+		() => <TextDisplay nextViewCallback={callback}><p>{instructions.beforeBlindnessTest}</p></TextDisplay>,
+		...shuffleArray(generateBlindnessTrials(callback)),
 		() => <TextDisplay nextViewCallback={callback}><p>{instructions.beforeTask}</p></TextDisplay>,
 		...flattenArray(shuffleArray([
 			[
@@ -111,17 +124,6 @@ const generateProcedure = (callback) => {
 };
 
 export default generateProcedure;
-
-const shuffleArray = (arr: any[]) => {
-	const array = [...arr];
-	for (let i = array.length - 1; i > 0; i--) {
-		const j = Math.floor(Math.random() * (i + 1));
-		const temp = array[i];
-		array[i] = array[j];
-		array[j] = temp;
-	}
-	return array;
-};
 
 const flattenArray = (arr: any[]) => {
 	return Array.prototype.concat.apply([], arr);

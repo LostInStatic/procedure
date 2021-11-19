@@ -28,7 +28,7 @@ const TLXInput: React.FC<Props> = (props) => {
 			</Grid>
 			<Grid item>
 				<Slider
-					style={{width: '200px'}}
+					style={{width: '400px'}}
 					min={1}
 					max={7}
 					step={1}
