@@ -36,19 +36,21 @@ export default Feedback;
 
 const generateFeedbackTable = (model: Model, target: number[], answer: number[]) => {
 	return <table>
-		<tr>
-			<th></th>
-			<th>Cel</th>
-			<th>Odpowiedź</th>
-		</tr>
-		{model.axes.map(
-			(axis, index) => {
-				return <tr key={axis.label}>
-					<td>{`${axis.label}:`}</td>
-					<td>{target[index]}</td>
-					<td>{answer[index]}</td>
-				</tr>;
-			}
-		)}
+		<tbody>
+			<tr>
+				<th></th>
+				<th>Cel</th>
+				<th>Odpowiedź</th>
+			</tr>
+			{model.axes.map(
+				(axis, index) => {
+					return <tr key={axis.label}>
+						<td>{`${axis.label}:`}</td>
+						<td>{target[index]}</td>
+						<td>{answer[index]}</td>
+					</tr>;
+				}
+			)}
+		</tbody>
 	</table>;
 };

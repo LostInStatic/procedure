@@ -35,10 +35,12 @@ const Axis: React.FC<IProps> = (props) => {
 		}
 	);
 
+	const passedProps = (({label, min, max, onChange}) => ({label, min, max, onChange}))(props);
+
 	return <div className="axis">
 		<span className="axis-label">{props.label}</span>
 		<Slider
-			{...props}
+			{...passedProps}
 			classes={props.gradientCSS ? useStyles(props) : undefined}
 			step={10}
 			defaultValue={defaultValue}
