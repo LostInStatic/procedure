@@ -5,6 +5,7 @@ import models from '../../data/models';
 import Input from './input/input';
 import Stimulus from './stimulus';
 import { useDataLogger } from '../data/dataLogger';
+import { randomInteger } from '../../data/randomInteger';
 
 interface Props {
 	type: TrialData['trialType']
@@ -80,10 +81,6 @@ const Trial: React.FC<Props> = (props) => {
 
 export default Trial;
 
-
-function randomInteger(min, max) {
-	return Math.floor(Math.random() * (max - min + 1)) + min;
-}
 
 const createTargetValues = (model: Model) => {
 	return [...model.axes.map(

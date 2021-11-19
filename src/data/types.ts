@@ -21,3 +21,11 @@ export interface TrialData {
 	trialType: TrialType,
 	feedbackLevel: FeedbackLevel
 }
+
+export interface BlindnessTestTrialData {
+	started: number,
+	ended: number,
+	target: number[],
+	correct: boolean,
+	answer: number[]
+}

@@ -22,7 +22,7 @@ const TLXForm: React.FC<Props> = (props) => {
 	);
 
 
-	return <form>
+	return <form className='tlx-form'>
 
 		<p>Wypełnij formularz, biorąc pod uwagę TYLKO typ zadania, w którym wyświetlane były {feedbackLevelsTextMap.find((el) => props.feedbackLevel === el.level).text}</p>
 		

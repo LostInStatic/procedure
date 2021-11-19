@@ -4,11 +4,13 @@ import { TrialData } from '../../data/types';
 type Trials = TrialData[]
 
 interface ContextValue {
-	session: any
+	session: any,
+	blindnessTestResults: any,
 	trials: Trials,
 	TLXResults: any,
-	pushTrial: (state: Trials) => void
-	pushTLX: (state: any) => void
+	pushBlindnessTrial: (state: any) => void,
+	pushTrial: (state: Trials) => void,
+	pushTLX: (state: any) => void,
 	recordSessionData: (state: any) => void
 }
 
@@ -27,6 +29,9 @@ export const useDataLogger = (): ContextValue => {
 };
 
 export const DataLogger: React.FC = (props) => {
+	const [blindnessTestResults, addBlindnessTrial] = React.useReducer(
+		addRecord,
+		[]);
 	const [trials, addTrial] = React.useReducer(
 		addRecord,
 		[]);
@@ -38,8 +43,10 @@ export const DataLogger: React.FC = (props) => {
 	return (
 		<Context.Provider value={{
 			session: session,
+			blindnessTestResults: blindnessTestResults,
 			trials: trials,
 			TLXResults: TLXresults,
+			pushBlindnessTrial: addBlindnessTrial,
 			pushTrial: addTrial,
 			pushTLX: addTLX,
 			recordSessionData: updateSessionData
