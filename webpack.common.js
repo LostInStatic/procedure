@@ -33,5 +33,10 @@ module.exports = {
 			template: inputPath + '/index.html'
 		},
 	),
+	new HtmlWebpackPlugin(
+		{
+			template: inputPath + '/netlify-mock-form.html'
+		}
+	),
 	new CleanWebpackPlugin()]
 };
