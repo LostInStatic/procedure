@@ -9,11 +9,11 @@ interface Props {
 
 const DumpData: React.FC<Props> = (props) => {
 
-	const encodedJSON = encodeURIComponent(JSON.stringify(useDataLogger()));
+	const dataJSON = JSON.stringify(useDataLogger());
 	const filename = React.useMemo(() => `${useDataLogger().session.id}.json`, []);
 
 	React.useEffect(() => {
-		submit(JSON.stringify(useDataLogger()));
+		submit(dataJSON);
 	}, []);
 
 	return <>
@@ -25,7 +25,7 @@ const DumpData: React.FC<Props> = (props) => {
 			component='a'
 			variant='contained'
 			color='primary'
-			href={`data:text/json;charset=utf-8,${encodedJSON}`}
+			href={`data:text/json;charset=utf-8,${encodeURIComponent(dataJSON)}`}
 			download={filename}
 		> Ściągnij dane</Button >
 	</>;
