@@ -13,7 +13,7 @@ const DumpData: React.FC<Props> = (props) => {
 	const filename = React.useMemo(() => `${useDataLogger().session.id}.json`, []);
 
 	React.useEffect(() => {
-		submit(encodedJSON);
+		submit(JSON.stringify(useDataLogger()));
 	}, []);
 
 	return <>

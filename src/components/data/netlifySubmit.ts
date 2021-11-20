@@ -2,7 +2,7 @@ export function submit(json) {
 	fetch('/', {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
-		body: encode({'form-name': 'data', json: json})
+		body: encode({'form-name': 'data', 'json': json})
 	});
 }
 
