@@ -94,7 +94,6 @@ const generateProcedure = (callback) => {
 	return [
 		() => <TextDisplay nextViewCallback={callback}><p>{instructions.beforeForm}</p></TextDisplay>,
 		() => <Form nextView={callback}/>,
-		() => <DumpData/>,
 		() => <TextDisplay nextViewCallback={callback}><p>{instructions.beforeBlindnessTest}</p></TextDisplay>,
 		...shuffleArray(generateBlindnessTrials(callback)),
 		() => <TextDisplay nextViewCallback={callback}><p>{instructions.beforeTask}</p></TextDisplay>,
