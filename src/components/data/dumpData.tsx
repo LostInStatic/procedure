@@ -1,6 +1,7 @@
 import { Button } from '@material-ui/core';
 import React = require('react');
 import { useDataLogger } from './dataLogger';
+import { submit } from './netlifySubmit';
 
 interface Props {
 
@@ -10,6 +11,10 @@ const DumpData: React.FC<Props> = (props) => {
 
 	const encodedJSON = encodeURIComponent(JSON.stringify(useDataLogger()));
 	const filename = React.useMemo(() => `${useDataLogger().session.id}.json`, []);
+
+	React.useEffect(() => {
+		submit(encodedJSON);
+	}, []);
 
 	return <>
 		<p>
