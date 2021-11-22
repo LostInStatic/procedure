@@ -20,6 +20,7 @@ export interface TrialData {
 	model: ModelName,
 	trialType: TrialType,
 	feedbackLevel: FeedbackLevel
+	events: {type: string, time: number}[]
 }
 
 export interface BlindnessTestTrialData {

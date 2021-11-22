@@ -24,10 +24,22 @@ const Trial: React.FC<Props> = (props) => {
 		[]
 	);
 
+	const [events, logEvent] = React.useReducer((state: TrialData['events'], event: Event) => [...state, {type: event.type, time: Date.now()}], []);
+
 	React.useEffect(
-		() => setTargetValues(
-			createTargetValues(props.model)
-		),
+		() => {
+			setTargetValues(
+				createTargetValues(props.model)
+			);
+
+			function handleEvent(e){logEvent(e);}
+			document.addEventListener('blur', handleEvent);
+			document.addEventListener('focus', handleEvent);
+			return () => {
+				document.removeEventListener('blur', handleEvent);
+				document.removeEventListener('focusin', handleEvent);
+			};
+		},
 		[]
 	);
 
@@ -70,6 +82,7 @@ const Trial: React.FC<Props> = (props) => {
 							ended: Date.now(),
 							target: targetValues,
 							answer: currentValues,
+							events: events
 						}]
 					);
 					props.trialFinishedCallback();
