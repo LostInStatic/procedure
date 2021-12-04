@@ -10,7 +10,10 @@ const outputPath = path.resolve(__dirname, 'dist');
 module.exports = {
 	context: inputPath,
 	entry: {
-		'main': './main.tsx'
+		main: './main.tsx',
+		intro: './intro.tsx',
+		outro: './outro.tsx',
+		preview: './preview.tsx'
 	},
 	output: {
 		path: outputPath,
@@ -30,13 +33,36 @@ module.exports = {
 	},
 	plugins: [new HtmlWebpackPlugin(
 		{
-			template: inputPath + '/index.html'
+			filename: 'experiment/index.html',
+			template: inputPath + '/pages/root.html',
+			chunks: ['main']
 		},
 	),
 	new HtmlWebpackPlugin(
 		{
-			filename: 'netlify-mock-form.html',
-			template: inputPath + '/netlify-mock-form.html'
+			filename: 'introduction/index.html',
+			template: inputPath + '/pages/root.html',
+			chunks: ['intro']
+		},
+	),
+	new HtmlWebpackPlugin(
+		{
+			filename: 'thankyou/index.html',
+			template: inputPath + '/pages/root.html',
+			chunks: ['outro']
+		},
+	),
+	new HtmlWebpackPlugin(
+		{
+			filename: 'preview/index.html',
+			template: inputPath + '/pages/root.html',
+			chunks: ['preview']
+		},
+	),
+	new HtmlWebpackPlugin(
+		{
+			filename: '/tools/netlify-mock-form.html',
+			template: inputPath + '/pages/netlify-mock-form.html'
 		}
 	),
 	new CleanWebpackPlugin()]

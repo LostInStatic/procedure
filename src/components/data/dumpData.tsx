@@ -18,8 +18,11 @@ const DumpData: React.FC<Props> = (props) => {
 
 	return <>
 		<p>
-			Proszę o ściągnięcie i zapisanie pliku z danymi. Następnie przełącz się na kartę RealEye (nie zamykaj tej!), kliknij w dowolnym miejscu i wykonaj następne polecenia.
+			Możesz teraz ściągnąć i zapisać plik z danymi - będzie Ci potrzebny do obejrzenia odpowiedzi (link otrzymasz na samym końcu). Następnie przełącz się na kartę RealEye (nie zamykaj tej!), kliknij w dowolnym miejscu i wykonaj następne polecenia.
 		</p>
+
+		<p>Przycisk escape (esc) pozwoli ci wyjść z trybu pełnoekranowego.</p>
+		
 		<Button
 			className='next-button'
 			component='a'
