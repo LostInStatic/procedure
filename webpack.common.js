@@ -61,7 +61,7 @@ module.exports = {
 	),
 	new HtmlWebpackPlugin(
 		{
-			filename: '/netlify-mock-form.html',
+			filename: 'netlify-mock-form.html',
 			template: inputPath + '/pages/netlify-mock-form.html'
 		}
 	),
