@@ -5,7 +5,7 @@ import React = require('react');
 import { StylesProvider } from '@material-ui/styles';
 import { Button } from '@material-ui/core';
 
-const sonaCallbackURL = 'xd';
+const sonaCallbackURL = 'https://swps.sona-systems.com/webstudy_credit.aspx?experiment_id=1542&credit_token=4283b72c4a3b4214bfe64dba338f6423&survey_code=';
 
 const urlParams = new URLSearchParams(window.location.search);
 
@@ -16,7 +16,7 @@ const sonaText = (
 	<>
 		<p>Dziękuję za udział w badaniu!</p>
 		<p>Kliknij w link poniżej, aby potwierdzić ukończenie badania w systemie SONA</p>
-		<Button variant='contained' component='a' href={`${sonaCallbackURL}?${sonaParamName}=${sonaID}`}>Zakończ badanie</Button>
+		<Button variant='contained' component='a' href={`${sonaCallbackURL}${sonaID}`}>Zakończ badanie</Button>
 	</>
 );
 

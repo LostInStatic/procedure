@@ -21,7 +21,7 @@ const defaultText = (
 	<>
 		<p>Dziękuję za chęć uczestnictwa w badaniu!</p>
 
-		<p>Głównym jego celem jest zbadanie różnic w szybkości i precyzji wybierania kolorów za pomocą dwóch modelów (RGB i HSL). </p>
+		<p>Głównym celem badania jest zbadanie różnic między dwoma modelami kolorów (RGB i HSL) w szybkości i precyzji wybierania kolorów przy ich wykorzystaniu. </p>
 
 		<p>Całe badanie odbędzie się online, potrwa około pół godziny. Do badania potrzebny jest komputer z myszką oraz kamerą umieszczoną blisko krawędzi ekranu, z zainstalowaną przeglądarką Google Chrome. </p>
 
