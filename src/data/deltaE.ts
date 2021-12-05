@@ -6,6 +6,6 @@ export default function colorDifference(color1, color2) {
 function differenceDescription (difference:number) {
 	if (difference < 2) return 'Idealnie!';
 	if (difference < 5) return 'Prawie idealnie!';
-	if (difference < 12) return 'Niewielka różnica';
+	if (difference < 18) return 'Mała różnica';
 	return '';
 }

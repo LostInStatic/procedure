@@ -13,7 +13,7 @@ interface Props {
 }
 
 const Feedback: React.FC<Props> = (props) => {
-	const [result] = [props.trial] || useDataLogger().trials.slice(-1);
+	const [result] = props.trial ? [props.trial] : useDataLogger().trials.slice(-1);
 	const model = models.find(model => model.name === result.model);
 	const difference = colorDifference(
 		new Color(model.setColor(result.target).backgroundColor), 

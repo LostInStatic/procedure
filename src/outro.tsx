@@ -25,7 +25,7 @@ const defaultText = (
 		<p>Dziękuję za udział w badaniu!</p>
 
 		<p>Możesz zamknąć tę kartę. Jeśli chciałbyś obejrzeć swoje odpowiedzi, kliknij w przycisk poniżej.</p>
-		<Button variant='contained' component='a' href={'/preview}'}>Przeglądarka odpowiedzi</Button>
+		<Button variant='contained' component='a' href={'/preview'}>Przeglądarka odpowiedzi</Button>
 
 	</>
 );
@@ -33,7 +33,7 @@ const defaultText = (
 ReactDOM.render(
 	<StylesProvider injectFirst>
 		<div className="text">
-			{sonaID ? sonaText : defaultText}
+			<p>{sonaID ? sonaText : defaultText}</p>
 		</div>
 	</StylesProvider>
 	,
