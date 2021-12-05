@@ -5,6 +5,8 @@ import React = require('react');
 import { StylesProvider } from '@material-ui/styles';
 import { Button } from '@material-ui/core';
 
+const realEyeURL = 'https://www.realeye.io/test/ab41829e-8b0c-4e39-bbb4-0c4b4cafe03e/run';
+
 const urlParams = new URLSearchParams(window.location.search);
 
 const sonaParamName = 'sona';
@@ -41,7 +43,7 @@ ReactDOM.render(
 	<StylesProvider injectFirst>
 		<div className="text">
 			{sonaID ? sonaText : defaultText}
-			<Button variant='contained' component='a' href={`/thankyou${sonaID ? `?${sonaParamName}=${sonaID}` : ''}`}>Dalej</Button>
+			<Button variant='contained' component='a' href={`${realEyeURL}${sonaID ? `?${sonaParamName}=${sonaID}` : ''}`}>Dalej</Button>
 		</div>
 	</StylesProvider>
 	,
