@@ -9,10 +9,11 @@ import Color from 'colorjs.io';
 
 interface Props {
 	finishedCallback: () => void
+	trial? :TrialData
 }
 
 const Feedback: React.FC<Props> = (props) => {
-	const [result] = useDataLogger().trials.slice(-1);
+	const [result] = [props.trial] || useDataLogger().trials.slice(-1);
 	const model = models.find(model => model.name === result.model);
 	const difference = colorDifference(
 		new Color(model.setColor(result.target).backgroundColor), 
@@ -26,7 +27,7 @@ const Feedback: React.FC<Props> = (props) => {
 		</div>
 		<div className="feedback">
 			<div className="feedback-message">{difference.description}</div>
-			<div className="deltaE">Różnica między kolorami: {Math.floor(difference.deltaE)}</div>
+			{/* <div className="deltaE">Różnica między kolorami: {Math.floor(difference.deltaE)}</div> */}
 			{generateFeedbackTable(model, result.target, result.answer)}
 		</div>
 		<Button
@@ -36,7 +37,7 @@ const Feedback: React.FC<Props> = (props) => {
 			onClick={
 				() => props.finishedCallback()
 			}
-		>Zakończ</Button>
+		>Dalej</Button>
 	</>;
 };
 

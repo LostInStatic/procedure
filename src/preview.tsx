@@ -3,18 +3,12 @@ import './style.scss';
 import ReactDOM = require('react-dom');
 import React = require('react');
 import { StylesProvider } from '@material-ui/styles';
-
-
-document.documentElement.addEventListener('click', () => {
-	if (!document.fullscreenElement) document.documentElement.requestFullscreen();
-});
-
-
+import Preview from './components/preview/preview';
 
 
 ReactDOM.render(
 	<StylesProvider injectFirst>
-			Hello preview!
+		<Preview />
 	</StylesProvider>
 	,
 	document.getElementById('root')

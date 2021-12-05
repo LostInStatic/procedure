@@ -1,6 +1,6 @@
 const instructions = {
 	beforeForm: `
-		Dziękuję za chęć wzięcia udziału w badaniu. Po wciśnięciu przycisku "dalej" wyświetli się krótki formularz. Po wypełnieniu go przejdziesz do części eksperymentalnej. Badanie potrwa około 30 minut.
+		Dziękuję za chęć wzięcia udziału w badaniu. Po wciśnięciu przycisku "dalej" wyświetli się krótki formularz. Po wypełnieniu go przejdziesz do części eksperymentalnej. Jeśli widzisz na ekranie informację o udostępnianiu ekranu, kliknij "ukryj" zanim przejdziesz dalej.
 	`,
 	beforeBlindnessTest: `
 	Za chwilę przejdziesz przez test mający sprawdzić twoją zdolność do rozróżniania kolorów. Twoje zadanie polega na kliknięciu na mniejsze koło odpowiadające kolorem dużemu kołu.
