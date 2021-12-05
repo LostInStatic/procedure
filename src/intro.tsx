@@ -5,7 +5,7 @@ import React = require('react');
 import { StylesProvider } from '@material-ui/styles';
 import { Button } from '@material-ui/core';
 
-const realEyeURL = 'https://www.realeye.io/test/ab41829e-8b0c-4e39-bbb4-0c4b4cafe03e/run';
+const realEyeURL = 'https://www.realeye.io/test/153247d4-2078-4555-9e29-87f61e036242/run';
 
 const urlParams = new URLSearchParams(window.location.search);
 
