@@ -25,6 +25,7 @@ const Trial: React.FC<Props> = (props) => {
 	);
 
 	const [events, logEvent] = React.useReducer((state: TrialData['events'], event: Event) => [...state, {type: event.type, time: Date.now()}], []);
+	const [midpoints, logMidpoint] = React.useReducer((state: TrialData['midpoints'], values: number[]) => [...state, {values, time: Date.now()}], []);
 
 	React.useEffect(
 		() => {
@@ -69,6 +70,7 @@ const Trial: React.FC<Props> = (props) => {
 			displayValues={props.feedbackLevel !== 'minimal'} 
 			displayGradients={props.feedbackLevel === 'gradients'}
 			reportChange={values => setCurrentValues([...values])}
+			reportChangeComitted={() => logMidpoint(currentValues)}
 		/>
 		<Button
 			variant='contained'
@@ -82,7 +84,8 @@ const Trial: React.FC<Props> = (props) => {
 							ended: Date.now(),
 							target: targetValues,
 							answer: currentValues,
-							events: events
+							events: events,
+							midpoints: midpoints
 						}]
 					);
 					props.trialFinishedCallback();

@@ -15,7 +15,7 @@ const sonaID = urlParams.get(sonaParamName);
 const sonaText = (
 	<>
 		<p>W pierwszej kolejności zostanie skalibrowane oprogramowanie do eyetrackingu. Upewnij się, że znajdujesz się w wygodnej pozycji siedzącej, masz pod ręką myszkę, a twoja twarz jest dobrze oświetlona.</p>
-		<p>Jeśli jesteś gotowy_a, aby wziąć udział w badaniu, kliknij w link poniżej:</p>
+		<p>Jeśli jesteś gotowy/a, aby wziąć udział w badaniu, kliknij w link poniżej:</p>
 	</>
 );
 

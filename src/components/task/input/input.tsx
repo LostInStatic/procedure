@@ -5,6 +5,7 @@ import { ArrayElement } from '../../../data/types';
 
 interface IProps {
 	reportChange: (values: number[]) => void
+	reportChangeComitted: () => void
 	displayValues?: boolean
 	displayGradients?: boolean
 	model: ArrayElement<typeof models>;
@@ -28,6 +29,7 @@ const Input: React.FC<IProps> = (props) => {
 	const generateAxis = (axisData: ArrayElement<typeof props.model.axes>, index:number) => {
 		return <Axis
 			onChange={(e, value) => {updateValues({value, index});}}
+			onChangeCommitted={props.reportChangeComitted}
 			key={axisData.label}
 			label={`${axisData.label}: `}
 			min={0}

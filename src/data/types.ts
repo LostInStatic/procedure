@@ -20,7 +20,8 @@ export interface TrialData {
 	model: ModelName,
 	trialType: TrialType,
 	feedbackLevel: FeedbackLevel
-	events: {type: string, time: number}[]
+	events: {type: string, time: number}[],
+	midpoints: {values: number[], time: number}[]
 }
 
 export interface BlindnessTestTrialData {

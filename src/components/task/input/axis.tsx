@@ -9,6 +9,7 @@ interface IProps {
 	displayValue?: boolean;
 	gradientCSS?: string;
 	onChange: (e: React.ChangeEvent, value: number) => void
+	onChangeCommitted: () => void
 }
 
 const Axis: React.FC<IProps> = (props) => {
@@ -35,7 +36,7 @@ const Axis: React.FC<IProps> = (props) => {
 		}
 	);
 
-	const passedProps = (({label, min, max, onChange}) => ({label, min, max, onChange}))(props);
+	const passedProps = (({label, min, max, onChange, onChangeCommitted}) => ({label, min, max, onChange, onChangeCommitted}))(props);
 
 	return <div className="axis">
 		<span className="axis-label">{props.label}</span>
