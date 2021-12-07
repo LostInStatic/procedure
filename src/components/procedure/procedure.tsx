@@ -13,6 +13,7 @@ import TLXInput from '../TLXForm/input';
 import TLXForm from '../TLXForm/form';
 import BlindnessTest from '../blindnessTest/test';
 import { shuffleArray } from './shuffleArray';
+import Sync from '../instructions/realeyeSync';
 
 
 const CONFIG = {
@@ -94,6 +95,7 @@ const generateProcedure = (callback) => {
 	return [
 		() => <TextDisplay nextViewCallback={callback}><p>{instructions.beforeForm}</p></TextDisplay>,
 		() => <Form nextView={callback}/>,
+		() => <Sync nextViewCallback={callback} />,
 		() => <TextDisplay nextViewCallback={callback}><p>{instructions.beforeBlindnessTest}</p></TextDisplay>,
 		...shuffleArray(generateBlindnessTrials(callback)),
 		() => <TextDisplay nextViewCallback={callback}><p>{instructions.beforeTask}</p></TextDisplay>,

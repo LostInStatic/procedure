@@ -8,10 +8,12 @@ interface ContextValue {
 	blindnessTestResults: any,
 	trials: Trials,
 	TLXResults: any,
+	syncData: number[]
 	pushBlindnessTrial: (state: any) => void,
 	pushTrial: (state: Trials) => void,
 	pushTLX: (state: any) => void,
-	recordSessionData: (state: any) => void
+	recordSessionData: (state: any) => void,
+	recordSyncClick: (record:number[]) => void,
 }
 
 interface IProps {
@@ -40,16 +42,21 @@ export const DataLogger: React.FC = (props) => {
 		[]);
 	const [session, updateSessionData] = React.useState(null);
 
+	const [syncData, addSyncClick] = React.useReducer(addRecord, []);
+
 	return (
 		<Context.Provider value={{
 			session: session,
 			blindnessTestResults: blindnessTestResults,
 			trials: trials,
 			TLXResults: TLXresults,
+			syncData: syncData,
 			pushBlindnessTrial: addBlindnessTrial,
 			pushTrial: addTrial,
 			pushTLX: addTLX,
-			recordSessionData: updateSessionData
+			recordSessionData: updateSessionData,
+			recordSyncClick: addSyncClick
+			
 		}}>
 			{props.children}
 		</Context.Provider>
