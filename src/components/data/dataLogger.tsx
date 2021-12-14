@@ -8,12 +8,14 @@ interface ContextValue {
 	blindnessTestResults: any,
 	trials: Trials,
 	TLXResults: any,
-	syncData: number[]
+	syncData: number[],
+	auxData: {ended: number, env: any, resolution: number[]}
 	pushBlindnessTrial: (state: any) => void,
 	pushTrial: (state: Trials) => void,
 	pushTLX: (state: any) => void,
 	recordSessionData: (state: any) => void,
 	recordSyncClick: (record:number[]) => void,
+	recordAuxData: (data: ContextValue['auxData']) => void
 }
 
 interface IProps {
@@ -42,6 +44,8 @@ export const DataLogger: React.FC = (props) => {
 		[]);
 	const [session, updateSessionData] = React.useState(null);
 
+	const [auxData, updateAuxData] = React.useState(null);
+
 	const [syncData, addSyncClick] = React.useReducer(addRecord, []);
 
 	return (
@@ -51,11 +55,13 @@ export const DataLogger: React.FC = (props) => {
 			trials: trials,
 			TLXResults: TLXresults,
 			syncData: syncData,
+			auxData: auxData,
 			pushBlindnessTrial: addBlindnessTrial,
 			pushTrial: addTrial,
 			pushTLX: addTLX,
 			recordSessionData: updateSessionData,
-			recordSyncClick: addSyncClick
+			recordSyncClick: addSyncClick,
+			recordAuxData: updateAuxData,
 			
 		}}>
 			{props.children}

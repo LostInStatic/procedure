@@ -4,13 +4,20 @@ import ReactDOM = require('react-dom');
 import React = require('react');
 import { StylesProvider } from '@material-ui/styles';
 import { Button } from '@material-ui/core';
+import Cookies = require('js-cookie');
 
-const realEyeURL = 'https://www.realeye.io/test/153247d4-2078-4555-9e29-87f61e036242/run';
+let realEyeURL = 'https://www.realeye.io/test/153247d4-2078-4555-9e29-87f61e036242/run';
 
 const urlParams = new URLSearchParams(window.location.search);
 
+if (urlParams.has('integration_test')) realEyeURL = '/thankyou';
+
+const sessionID = Date.now().toString();
 const sonaParamName = 'sona';
 const sonaID = urlParams.get(sonaParamName);
+
+Cookies.set('session_id', sessionID);
+if (sonaID) Cookies.set('sona_id', sonaID);
 
 const sonaText = (
 	<>
@@ -43,7 +50,7 @@ ReactDOM.render(
 	<StylesProvider injectFirst>
 		<div className="text">
 			{sonaID ? sonaText : defaultText}
-			<Button variant='contained' component='a' href={`${realEyeURL}${sonaID ? `?${sonaParamName}=${sonaID}` : ''}`}>Dalej</Button>
+			<Button variant='contained' component='a' href={`${realEyeURL}?session_id=${sessionID}&${sonaID ? `${sonaParamName}=${sonaID}` : ''}`}>Dalej</Button>
 		</div>
 	</StylesProvider>
 	,

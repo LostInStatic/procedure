@@ -1,5 +1,6 @@
 import { Button } from '@material-ui/core';
 import React = require('react');
+import TextDisplay from '../instructions/textDisplay';
 import { useDataLogger } from './dataLogger';
 import { submit } from './netlifySubmit';
 
@@ -8,20 +9,31 @@ interface Props {
 }
 
 const DumpData: React.FC<Props> = (props) => {
+	const data = useDataLogger();
 
-	const dataJSON = JSON.stringify(useDataLogger());
-	const filename = React.useMemo(() => `${useDataLogger().session.id}.json`, []);
+	React.useEffect(
+		() => {
+			data.recordAuxData({
+				ended: Date.now(),
+				env: window.navigator,
+				resolution: [screen.width, screen.height]
+			});
+		}, []
+	);
+
+	const dataJSON = JSON.stringify(data);
+	const filename = React.useMemo(() => `${data.session.id}.json`, []);
 
 	React.useEffect(() => {
 		submit(dataJSON);
 	}, []);
 
-	return <>
+	return <TextDisplay nextViewCallback={() => null}>
 		<p>
-			Możesz teraz ściągnąć i zapisać plik z danymi - będzie Ci potrzebny do obejrzenia odpowiedzi (link otrzymasz na samym końcu). Następnie przełącz się na kartę RealEye (nie zamykaj tej!), kliknij w dowolnym miejscu i wykonaj następne polecenia.
+			Kilknięcie przycisku rozpocznie ściąganie pliku z twoimi odpowiedziami, oraz otworzy osobne okno - jeśli coś pójdzie nie tak podczas przesyłania danych eyetrackingowych (biały ekran), przejdź do niego.
 		</p>
 
-		<p>Przycisk escape (esc) pozwoli ci wyjść z trybu pełnoekranowego.</p>
+		<p>Po ściągnięciu odpowiedzi zamknij tę kartę.</p>
 		
 		<Button
 			className='next-button'
@@ -29,9 +41,12 @@ const DumpData: React.FC<Props> = (props) => {
 			variant='contained'
 			color='primary'
 			href={`data:text/json;charset=utf-8,${encodeURIComponent(dataJSON)}`}
+			onClick={() => {
+				window.open('/thankyou?fallback', '_blank', 'popup');
+			}}
 			download={filename}
 		> Ściągnij dane</Button >
-	</>;
+	</TextDisplay>;
 };
 
 export default DumpData;

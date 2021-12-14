@@ -9,6 +9,7 @@ import { ClosedQuestion, FormItem, OpenQuestion, questionnaire } from './questio
 import SelectQuestion from './selectQuestion';
 import MultipleChoiceQuestion from './multipleChoiceQuestion';
 import Divider from './divider';
+import Cookies = require('js-cookie');
 
 interface Props {
 	nextView: () => void;
@@ -41,7 +42,7 @@ export default EntryForm;
 
 const getInitialValues = () => {
 	const output = {
-		id: Date.now()
+		id: Cookies.get('session_id') || `invalid_${Date.now()}`
 	};
 	questionnaire.filter(
 		(item): item is OpenQuestion | ClosedQuestion => item.type !== 'divider'
