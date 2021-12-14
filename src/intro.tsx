@@ -35,7 +35,7 @@ const defaultText = (
 
 		<p>W pierwszej kolejności zostanie skalibrowane oprogramowanie do eyetrackingu. Upewnij się, że znajdujesz się w wygodnej pozycji siedzącej, masz pod ręką myszkę, a twoja twarz jest dobrze oświetlona.</p>
 
-		<p>Klikając w link poniżej wyrażasz zgodę na udział w badaniu. Jeśli jesteś gotowy_a, otwórz go w przeglądarce Google Chrome:</p>
+		<p>Klikając w link poniżej wyrażasz zgodę na udział w badaniu. Jeśli jesteś gotowa/y, otwórz go w przeglądarce Google Chrome:</p>
 	</>
 );
 

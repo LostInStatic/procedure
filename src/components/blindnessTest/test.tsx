@@ -25,7 +25,7 @@ const BlindnessTest: React.FC<Props> = (props) => {
 		const result: BlindnessTestTrialData = {
 			started: started,
 			ended: Date.now(),
-			target: [],
+			target: colors.target.srgb.map(val => Math.floor(val*255)),
 			...partialResult
 		};
 		logger.pushBlindnessTrial([result]);
