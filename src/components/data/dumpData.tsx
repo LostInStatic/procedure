@@ -1,6 +1,5 @@
 import { Button } from '@material-ui/core';
 import React = require('react');
-import TextDisplay from '../instructions/textDisplay';
 import { useDataLogger } from './dataLogger';
 import { submit } from './netlifySubmit';
 
@@ -28,7 +27,7 @@ const DumpData: React.FC<Props> = (props) => {
 		submit(dataJSON);
 	}, []);
 
-	return <TextDisplay nextViewCallback={() => null}>
+	return <div className="text">
 		<p>
 			Kilknięcie przycisku rozpocznie ściąganie pliku z twoimi odpowiedziami, oraz otworzy osobne okno - jeśli coś pójdzie nie tak podczas przesyłania danych eyetrackingowych (biały ekran), przejdź do niego.
 		</p>
@@ -46,7 +45,7 @@ const DumpData: React.FC<Props> = (props) => {
 			}}
 			download={filename}
 		> Ściągnij dane</Button >
-	</TextDisplay>;
+	</div>;
 };
 
 export default DumpData;
