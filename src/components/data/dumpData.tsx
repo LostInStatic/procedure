@@ -14,7 +14,7 @@ const DumpData: React.FC<Props> = (props) => {
 		() => {
 			data.recordAuxData({
 				ended: Date.now(),
-				env: window.navigator,
+				env: JSON.parse(JSON.stringify(window.navigator)),
 				resolution: [screen.width, screen.height]
 			});
 		}, []

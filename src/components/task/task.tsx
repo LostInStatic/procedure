@@ -36,13 +36,13 @@ const Trial: React.FC<Props> = (props) => {
 			function handleEvent(e){logEvent(e);}
 			document.addEventListener('blur', handleEvent);
 			document.addEventListener('focus', handleEvent);
-			document.addEventListener('mouseleave', handleEvent);
-			document.addEventListener('mouseenter', handleEvent);
+			document.documentElement.addEventListener('mouseleave', handleEvent);
+			document.documentElement.addEventListener('mouseenter', handleEvent);
 			return () => {
 				document.removeEventListener('blur', handleEvent);
 				document.removeEventListener('focusin', handleEvent);
-				document.removeEventListener('mouseleave', handleEvent);
-				document.removeEventListener('mouseenter', handleEvent);
+				document.documentElement.removeEventListener('mouseleave', handleEvent);
+				document.documentElement.removeEventListener('mouseenter', handleEvent);
 			};
 		},
 		[]
