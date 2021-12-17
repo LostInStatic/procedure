@@ -15,6 +15,7 @@ export default function Preview () {
 					type="file"
 					onChange={async (e) => {setTrials(getTrialsFromJson(await e.target.files[0].text()));}}
 				/>
+				<p>Kliknij przycisk poniżej i wybierz plik, który został ściągnięty na końcu badania. Przykładowa nazwa: 1638899328605.json (twój numer będzie się różnić)</p>
 				<label htmlFor="raised-button-file">
 					<Button variant="contained" component="span">
 						Upload
