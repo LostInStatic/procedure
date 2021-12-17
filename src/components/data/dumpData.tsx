@@ -12,9 +12,11 @@ const DumpData: React.FC<Props> = (props) => {
 
 	React.useEffect(
 		() => {
+			const _navigator = {};
+			for (const i in window.navigator) _navigator[i] = navigator[i];
 			data.recordAuxData({
 				ended: Date.now(),
-				env: JSON.parse(JSON.stringify(window.navigator)),
+				env: _navigator,
 				resolution: [screen.width, screen.height]
 			});
 		}, []
