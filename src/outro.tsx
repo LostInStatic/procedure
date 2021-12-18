@@ -24,7 +24,7 @@ const sonaText = (
 const defaultText = (
 	<>
 
-		<p>Możesz zamknąć tę kartę. Jeśli chciałbyś obejrzeć swoje odpowiedzi, kliknij w przycisk poniżej.</p>
+		<p>Jeśli chciałbyś obejrzeć swoje odpowiedzi, kliknij w przycisk poniżej.</p>
 		<Button variant='contained' component='a' href={'/preview'}>Przeglądarka odpowiedzi</Button>
 		<p>Dziękuję za udział w badaniu!</p>
 
@@ -34,6 +34,7 @@ const defaultText = (
 ReactDOM.render(
 	<StylesProvider injectFirst>
 		<div className="text">
+			{isFallbackRoutine ? <p>Wróć do tego okna, jeśli napotkasz błąd po powrocie do procedury i jej zakończeniu. Jeśli udało ci się przejść dalej bez problemu (i zobaczyłeś podobne okno), możesz zamknąć tę kartę.</p> : ''}
 			{sonaID ? sonaText : ''}
 			{defaultText}
 		</div>
