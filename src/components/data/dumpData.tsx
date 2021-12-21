@@ -34,7 +34,7 @@ const DumpData: React.FC<Props> = (props) => {
 			Kilknięcie przycisku rozpocznie ściąganie pliku z twoimi odpowiedziami, oraz otworzy osobne okno - jeśli coś pójdzie nie tak podczas przesyłania danych eyetrackingowych (biały ekran), przejdź do niego.
 		</p>
 
-		<p>Po kliknięciu przycisku ta karta zostanie zamknięta.</p>
+		<p>Jeśli po kliknięciu przycisku ta karta nie zostanie zamknięta, zrób to ręcznie (wciskając [esc] możesz wyjść z trybu pełnoekranowego)</p>
 		
 		<Button
 			className='next-button'
