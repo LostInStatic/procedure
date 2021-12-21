@@ -34,7 +34,7 @@ const defaultText = (
 ReactDOM.render(
 	<StylesProvider injectFirst>
 		<div className="text">
-			{isFallbackRoutine ? <p>Wróć do tego okna, jeśli napotkasz błąd po powrocie do procedury i jej zakończeniu. Jeśli udało ci się przejść dalej bez problemu (i zobaczyłeś podobne okno), możesz zamknąć tę kartę.</p> : ''}
+			{isFallbackRoutine ? <p>Jeśli napotkałeś błąd uniemożliwiający zakończenie procedury (biały ekran), użyj tego okna. Jeśli udało ci się przejść dalej bez problemu (i zobaczyłeś już podobne okno), możesz zamknąć to.</p> : ''}
 			{sonaID ? sonaText : ''}
 			{defaultText}
 		</div>

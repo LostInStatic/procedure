@@ -34,7 +34,7 @@ const DumpData: React.FC<Props> = (props) => {
 			Kilknięcie przycisku rozpocznie ściąganie pliku z twoimi odpowiedziami, oraz otworzy osobne okno - jeśli coś pójdzie nie tak podczas przesyłania danych eyetrackingowych (biały ekran), przejdź do niego.
 		</p>
 
-		<p>Po ściągnięciu odpowiedzi zamknij tę kartę.</p>
+		<p>Po kliknięciu przycisku ta karta zostanie zamknięta.</p>
 		
 		<Button
 			className='next-button'
@@ -44,6 +44,7 @@ const DumpData: React.FC<Props> = (props) => {
 			href={`data:text/json;charset=utf-8,${encodeURIComponent(dataJSON)}`}
 			onClick={() => {
 				window.open('/thankyou?fallback', '_blank', 'popup');
+				window.close();
 			}}
 			download={filename}
 		> Ściągnij dane</Button >
